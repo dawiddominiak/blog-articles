@@ -18,7 +18,7 @@ _Ted Neward_
 
 Elaborating on the above though we can say that every object is described by its identity independently of its state. Every object has a collection of operations that can be invoked to manipulate the state of itself or connected objects, and (most importantly) has encapsulated access to itself and effectively, ability to inherit and polymorph.
 
-> The representation of your object in memory depends  on what you intend to do with it, and context-sensitive representation is not a feature of OO design.
+> The representation of your object in memory depends [sic] what you intend to do with it, and context-sensitive representation is not a feature of OO design.
 _Laurie Voss_
 
 On the other hand, relational systems describe the set of truths related to each other. Although thanks to the 4th generation language – DML – we can easily retrieve the facts hidden behind relations, it’s not the most efficient way to store the state of a collection of objects.
