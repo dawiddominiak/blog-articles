@@ -121,6 +121,6 @@ As we can see, Vietnam is slowly changing, or to be more precise: it adjusts its
 
 1. Use a proper database to your need. Maybe it’s better to use a document storage/key-value store (like in the example with smart devices), a graph database (in many social services) or a completely different type of database.
 2. Use CQRS, save events as known truths and visualize data in reporting stores in proper databases: relational, context-dependent data in RDBS, objects in key-value stores, graphs in graph databases etc.
-3. Use a half-way solution shying away from ORM frameworks, but still using RDBS. It’s a recommended approach if we want to keep a clear separation between domain and persistence layer without additional maintenance A persistence model needed for ORM framework would bring. In exchange, we can use the database with plain SQL more freely without the risk of causing side effects.
+3. Use a half-way solution shying away from ORM frameworks, but still using RDBS. It’s a recommended approach if we want to keep a clear separation between domain and persistence layer without additional maintenance of a persistence model needed for ORM framework would bring. In exchange, we can use the database with plain SQL more freely without the risk of causing side effects.
 
 But, what is most important: make careful, thought out decisions. Choice of technology cannot be an accident, trend or just your default choice - same for every problem.
