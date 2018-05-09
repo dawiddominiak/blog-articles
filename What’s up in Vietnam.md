@@ -6,7 +6,7 @@ Is there a more sophisticated parallel to a particular part of computer science 
 Following the definition on Wikipedia _it’s a technique for converting data between incompatible type systems using object-oriented programming languages._ To be more precise it’s converting relational data to the object-oriented domain model (OODM) and OODM to relational data. Conversions like that can be done in several ways, but the most common approach is to use a tool called ORM library or ORM framework.
 
 ## Why is it problematic?
- „Incompatible type systems” are mentioned already in the definition, and all incompatibilities are potential problems. First question that popped into my head after getting into the subject was: „Why the hell are we using incompatible systems? Why is it the first (and often the only) solution to solve the problem with persisting data?”
+ „Incompatible type systems” are mentioned already in the definition, and all incompatibilities are potential problems. First question that popped into my head after getting into the subject was: „Why the hell are we using incompatible systems? Why is it the first (and often the only one known) solution to solve the problem with persisting data?”
 
 > If your project really does not need any relational data features, then ORM will work perfectly for you, but then you have a different problem: you're using the wrong data store. […] On the other hand, if your data is relational, then your object mapping will eventually break down.
 _Laurie Voss_
@@ -55,10 +55,10 @@ Let’s imagine that we received a request from a client to create „an applica
 Let’s try to solve this challenge.
 
 ### Table-per-class approach
-This is the normalized way to achieve mapping. Every single class maps to a separate table with properties. The `smart_devices` table is in the 1:n relation with `light_management_devices`/`heating_devices`/`security_devices`/`etc. `Tables `light_management_devices`/`heating_devices`/`security_devices` are in 1:n relation with more specific classes. So what’s the disadvantage? Try to create a DML to retrieve a record by its ID manually. It’s impractical. We also have to create two artificial primary keys to determine records for more specific tables. Even if it all happens behind the scenes, it's a very inefficient way of retrieving data.
+This is the normalized way to achieve mapping. Every single child class maps to a separate table with properties. Such tables are linked to a table representing a parent class. The `smart_devices` table is in the 1:n relation with `light_management_devices`/`heating_devices`/`security_devices`/`etc. `Tables `light_management_devices`/`heating_devices`/`security_devices` are in 1:n relation with more specific classes. So what’s the disadvantage? Try to create a DML to retrieve a record by its ID manually. It’s impractical. We also have to create two artificial primary keys to determine records for more specific tables. Even if it all happens behind the scenes, it's a very inefficient way of retrieving data.
 
-### Table-per-concrete-class approach <@FIXME: elaborate more on this approach :)>
-This approach has similar disadvantages. Let’s try to retrieve ten most recently updated devices. We need to union all data in a really obscure way (creating many Null columns):
+### Table-per-concrete-class approach
+This approach has similar disadvantages. Every single class maps to a separate table with all object and parents properties as columns. Let’s try to retrieve ten most recently updated devices. We need to union all data in a really obscure way (creating many Null columns):
 ```
 SELECT Col1, Col2, Null as Col3 FROM light_management_devices,
 UNION Col1, Null as Col2, Col3 FROM heating_devices.
